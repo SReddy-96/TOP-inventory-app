@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "node --watch app.js",
     "start": "node app.js",
+    "populate": "node db/populatedb.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
