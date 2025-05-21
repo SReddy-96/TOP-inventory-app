@@ -1,8 +1,8 @@
 <%- include('partials/header', {title:title}) %>
 <main>
-  <form action="/newItem" method="post">
+  <form action="/Item/new" method="post">
     <label for="name">Item Name:</label>
-    <input type="text" id="name" name="name" required />
+    <input type="text" id="item_name" name="name" required />
 
     <label for="quantity">Quantity:</label>
     <input type="number" id="quantity" name="quantity" required />

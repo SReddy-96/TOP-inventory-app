@@ -3,7 +3,8 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const indexRouter = require("./routes/indexRouter");
-const newItemRouter = require("./routes/newItemRouter");
+const itemRouter = require("./routes/itemRouter");
+const categoryRouter = require("./routes/categoryRouter");
 const path = require("node:path");
 
 // static assets
@@ -19,7 +20,8 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use("/", indexRouter);
-app.use("/newItem", newItemRouter);
+app.use("/item", itemRouter);
+app.use("/categories", categoryRouter);
 
 // 404 handler
 app.use((req, res, next) => {

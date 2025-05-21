@@ -3,7 +3,11 @@
       <div>
         <h2><%= item.name %></h2>
         <p>Quantity: <%= item.quantity %></p>
-        <p>Category: <%= itemCategory.name %></p>
+        <% if(itemCategory) {  %>
+          <p>Category: <%= itemCategory.name %></p>
+        <% } else { %>
+          <p>Category: None</p>
+        <% } %>
         <p>Added On: <%= item.date.toDateString() %></p>
         <p>Added By: <%= item.added_by %></p>
         <a href="/item/<%= item.id %>/update">Update</a>

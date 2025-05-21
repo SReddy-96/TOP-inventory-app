@@ -1,0 +1,14 @@
+<%- include('partials/header', {title:title}) %>
+<main>
+  <form action="/categories/<%= category.id %>/update" method="POST">
+    <label for="name">Category Name: </label>
+    <input
+      type="text"
+      id="category_name"
+      name="name"
+      value="<%= category.name %>"
+      required
+    />
+    <button type="submit">Update category</button>
+  </form>
+</main>

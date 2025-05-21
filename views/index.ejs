@@ -3,8 +3,12 @@
   <ul>
     <li><a href="/">All</a></li>
     <% locals.categories.forEach(category => { %>
-    <li><a href="/categories/<%= category.id %>"><%= category.name %></a></li>
+    <li>
+      <a href="/categories/<%= category.id %>"><%= category.name %></a>
+    </li>
     <% }) %>
+    <li><a href="/categories/new">+ Add Category</a></li>
+    <li><a href="/categories">Manage Categories</a></li>
   </ul>
 </nav>
 <% } %>
@@ -26,5 +30,5 @@
     </form>
   </div>
   <% }) %>
-  <a href="/newItem">Add item</a>
+  <a href="/item/new">Add item</a>
 </main>

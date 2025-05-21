@@ -26,10 +26,14 @@ A smart shopping list application that helps you organize items by categories, t
     categoryQueries.js - createCategory - getAllCategories - getCategoryById - updateCategory - deleteCategory
 - app.js
   - `/`
-  - `/category/:id`
-  - `/new/item`
-  - `/new/category`
-  - `/item/:id`
+  - `/categories/:id`
+  - `/categories/new`
+  - `/categories/:id/update`
+  - `/categories/:id/delete`
+  - `item/:id`
+  - `/item/new`
+  - `/item/:id/update`
+  - `/item/:id/delete`
 
 user can CRUD items
 user can CRUD categories
@@ -47,5 +51,8 @@ when delete category, just delete category from item so find items in that categ
   - added by
 
 - category
+
   - id primary key
   - name
+
+  Need to use `express-validator` to sanitise and check the form inputs.
