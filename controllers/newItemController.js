@@ -6,11 +6,10 @@ const getNewItemForm = (req, res) => {
   });
 };
 
-const addItem = (req, res) => {
+const addItem = async (req, res) => {
   const { name, category_id, quantity, added_by } = req.body;
-  console.log("Adding item:", req.body);
   try {
-    db.dbAddItem(name, category_id, quantity, added_by);
+    await db.dbAddItem(name, category_id, quantity, added_by);
     res.redirect("/");
   } catch (error) {
     error.statusCode = 500;

@@ -10,8 +10,8 @@
     <label for="added_by">Added By:</label>
     <input type="text" id="added_by" name="added_by" required />
 
-    <label for="category">Category:</label>
-    <select name="category" id="category">
+    <label for="category_id">Category:</label>
+    <select name="category_id" id="category_id">
       <% locals.categories.forEach(category => { %>
       <option value="<%= category.id %>"><%= category.name %></option>
       <% }) %>
@@ -19,4 +19,5 @@
 
     <button type="submit">Add Item</button>
   </form>
+  <a href="/">Back</a>
 </main>

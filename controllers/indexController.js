@@ -64,8 +64,55 @@ const getAllItemsByCategory = async (req, res, next) => {
   }
 };
 
+const deleteItem = async (req, res, next) => {
+  const itemId = req.params.id;
+  try {
+    await db.dbDeleteItem(itemId);
+    res.redirect("/");
+  } catch (error) {
+    error.statusCode = 500;
+    next(error);
+  }
+};
+
+const postUpdateItem = async (req, res, next) => {
+  const itemId = req.params.id;
+  const { name, category_id, quantity, added_by } = req.body;
+  try {
+    await db.dbUpdateItem(itemId, name, category_id, quantity, added_by);
+    res.redirect("/");
+  } catch (error) {
+    error.statusCode = 500;
+    next(error);
+  }
+};
+
+const getUpdateItem = async (req, res, next) => {
+  const itemId = req.params.id;
+  try {
+    const item = await db.dbGetItem(itemId);
+    if (!item) {
+      const err = new Error("Item not found");
+      err.statusCode = 404;
+      return next(err);
+    }
+    const categories = await db.dbGetAllCategories();
+    res.render("updateItem", {
+      title: "ShopSort: " + item.name,
+      item,
+      categories,
+    });
+  } catch (error) {
+    error.statusCode = 500;
+    next(error);
+  }
+}
+
 module.exports = {
   getAllItems,
   getItem,
   getAllItemsByCategory,
+  deleteItem,
+  getUpdateItem,
+  postUpdateItem,
 };

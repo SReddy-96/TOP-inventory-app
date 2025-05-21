@@ -46,7 +46,8 @@ CREATE TABLE IF NOT EXISTS items (
   category_id INTEGER REFERENCES categories(id),
   date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   quantity INTEGER DEFAULT 1,
-  added_by VARCHAR(100) NOT NULL
+  added_by VARCHAR(100) NOT NULL,
+  checked BOOLEAN DEFAULT FALSE
 );
 
 -- Insert Categories

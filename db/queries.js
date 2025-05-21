@@ -21,6 +21,17 @@ const dbAddItem = async (name, category_id, quantity, added_by) => {
   );
 };
 
+const dbDeleteItem = async (itemId) => {
+  await pool.query("DELETE FROM items WHERE id = $1", [itemId]);
+}
+
+const dbUpdateItem = async (itemId, name, category_id, quantity, added_by) => {
+  await pool.query(
+    "UPDATE items SET name = $1, category_id = $2, quantity = $3, added_by = $4 WHERE id = $5",
+    [name, category_id, quantity, added_by, itemId]
+  );
+}
+
 // categories
 
 const dbGetAllCategories = async () => {
@@ -60,4 +71,6 @@ module.exports = {
   dbGetAllItemsByCategory,
   dbGetAllCategories,
   dbAddItem,
+  dbDeleteItem,
+  dbUpdateItem,
 };

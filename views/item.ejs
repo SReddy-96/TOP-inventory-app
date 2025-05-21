@@ -6,6 +6,7 @@
         <p>Category: <%= itemCategory.name %></p>
         <p>Added On: <%= item.date.toDateString() %></p>
         <p>Added By: <%= item.added_by %></p>
+        <a href="/item/<%= item.id %>/update">Update</a>
       </div>
       <a href="/">Home</a>
     </main>

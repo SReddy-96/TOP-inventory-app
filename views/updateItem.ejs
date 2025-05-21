@@ -1,0 +1,28 @@
+<%- include('partials/header', {title:title}) %>
+<main>
+  <form action="/item/<%= item.id %>/update" method="POST">
+    <label for="name">Item Name:</label>
+    <input type="text" id="name" name="name" value="<%= item.name %>" required />
+
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" name="quantity" value="<%= item.quantity %>" required />
+
+    <label for="added_by">Added By:</label>
+    <input type="text" id="added_by" name="added_by"  value="<%= item.added_by %>" required />
+
+    <label for="category_id">Category:</label>
+    <select name="category_id" id="category_id">
+      <% locals.categories.forEach(category => { %>
+      <option 
+        value="<%= category.id %>"
+        <%= category.id === item.category_id ? 'selected' : '' %>
+      >
+        <%= category.name %>
+      </option>
+      <% }) %>
+    </select>
+
+    <button type="submit">Update Item</button>
+  </form>
+  <a href="/">Back</a>
+</main>
