@@ -14,12 +14,19 @@ const dbGetItem = async (itemId) => {
   return rows[0];
 };
 
-// categories 
+const dbAddItem = async (name, category_id, quantity, added_by) => {
+  await pool.query(
+    "INSERT INTO items (name, category_id, quantity, added_by) VALUES ($1, $2, $3, $4)",
+    [name, category_id, quantity, added_by]
+  );
+};
 
-const dbGetAllCategories = async () => {  
-  const {rows}= await pool.query("SELECT * FROM categories");
+// categories
+
+const dbGetAllCategories = async () => {
+  const { rows } = await pool.query("SELECT * FROM categories");
   return rows;
-}
+};
 
 const dbGetItemCategory = async (categoryId) => {
   const { rows } = await pool.query("SELECT * FROM categories WHERE id = $1", [
@@ -52,4 +59,5 @@ module.exports = {
   dbGetItemCategory,
   dbGetAllItemsByCategory,
   dbGetAllCategories,
+  dbAddItem,
 };

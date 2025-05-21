@@ -3,8 +3,8 @@ const {
   getAllItems,
   getItem,
   getAllItemsByCategory,
-  getAllCategories,
 } = require("../controllers/indexController");
+const { getAllCategories } = require("../middleware/getAllCategories");
 
 const indexRouter = Router();
 

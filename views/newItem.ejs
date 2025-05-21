@@ -1,0 +1,22 @@
+<%- include('partials/header', {title:title}) %>
+<main>
+  <form action="/newItem" method="post">
+    <label for="name">Item Name:</label>
+    <input type="text" id="name" name="name" required />
+
+    <label for="quantity">Quantity:</label>
+    <input type="number" id="quantity" name="quantity" required />
+
+    <label for="added_by">Added By:</label>
+    <input type="text" id="added_by" name="added_by" required />
+
+    <label for="category">Category:</label>
+    <select name="category" id="category">
+      <% locals.categories.forEach(category => { %>
+      <option value="<%= category.id %>"><%= category.name %></option>
+      <% }) %>
+    </select>
+
+    <button type="submit">Add Item</button>
+  </form>
+</main>
