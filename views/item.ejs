@@ -1,0 +1,13 @@
+<%- include('partials/header', {title: title}) %>
+    <main>
+      <div>
+        <h2><%= item.name %></h2>
+        <p>Quantity: <%= item.quantity %></p>
+        <p>Category: <%= itemCategory.name %></p>
+        <p>Added On: <%= item.date.toDateString() %></p>
+        <p>Added By: <%= item.added_by %></p>
+      </div>
+      <a href="/">Home</a>
+    </main>
+  </body>
+</html>

@@ -16,7 +16,7 @@ async function main(dbUrl) {
     const tableCheck = `
       SELECT EXISTS (
         SELECT FROM information_schema.tables 
-        WHERE table_name = 'item'
+        WHERE table_name = 'items'
       );
     `;
 
@@ -24,7 +24,7 @@ async function main(dbUrl) {
 
     if (rows[0].exists) {
       // Only check for data if tables exist
-      const countCheck = await client.query("SELECT COUNT(*) FROM item");
+      const countCheck = await client.query("SELECT COUNT(*) FROM items");
       if (countCheck.rows[0].count > 0) {
         console.log("✅ Database already populated, skipping seed");
         return;
@@ -33,24 +33,24 @@ async function main(dbUrl) {
 
     // If tables don't exist or are empty, run the seed
     const SQL = `
--- Create Category table
-CREATE TABLE IF NOT EXISTS category (
+-- Create Categories table
+CREATE TABLE IF NOT EXISTS categories (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   name VARCHAR(100) NOT NULL
 );
 
--- Create Item table
-CREATE TABLE IF NOT EXISTS item (
+-- Create Items table
+CREATE TABLE IF NOT EXISTS items (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   name VARCHAR(100) NOT NULL,
-  category_id INTEGER REFERENCES category(id),
+  category_id INTEGER REFERENCES categories(id),
   date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   quantity INTEGER DEFAULT 1,
   added_by VARCHAR(100) NOT NULL
 );
 
 -- Insert Categories
-INSERT INTO category (name) VALUES
+INSERT INTO categories (name) VALUES
   ('Dairy'),
   ('Fruit'),
   ('Vegetables'),
@@ -58,7 +58,7 @@ INSERT INTO category (name) VALUES
   ('Pantry');
 
 -- Insert Items
-INSERT INTO item (name, category_id, quantity, added_by) VALUES
+INSERT INTO items (name, category_id, quantity, added_by) VALUES
   ('Milk', 1, 2, 'Steve'),                    -- Dairy
   ('Cheese', 1, 1, 'Sarah'),                  -- Dairy
   ('Apples', 2, 6, 'John'),                   -- Fruit
