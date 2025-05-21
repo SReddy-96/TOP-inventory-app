@@ -1,5 +1,6 @@
 <%- include('partials/header', {title:title}) %>
 <main>
+    <%- include('partials/formErrors') %>
   <form action="/item/<%= item.id %>/update" method="POST">
     <label for="name">Item Name:</label>
     <input type="text" id="name" name="name" value="<%= item.name %>" required />

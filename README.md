@@ -10,10 +10,12 @@ A smart shopping list application that helps you organize items by categories, t
 
 - Controller
   - indexController.js
+  - itemController.js
+  - categoryController.js
 - Routes
   - indexRouter.js
-  - newRouter.js
   - itemRouter.js
+  - categoryRouter.js
 - Views
   - index.ejs
   - item.ejs
@@ -56,3 +58,5 @@ when delete category, just delete category from item so find items in that categ
   - name
 
   Need to use `express-validator` to sanitise and check the form inputs.
+handle when checked with emojis and strike through the text. 
+Want the All categories to put all the items in groups with headers of the category.

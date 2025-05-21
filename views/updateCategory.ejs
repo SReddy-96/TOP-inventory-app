@@ -1,5 +1,6 @@
 <%- include('partials/header', {title:title}) %>
 <main>
+    <%- include('partials/formErrors') %>
   <form action="/categories/<%= category.id %>/update" method="POST">
     <label for="name">Category Name: </label>
     <input

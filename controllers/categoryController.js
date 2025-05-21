@@ -1,4 +1,14 @@
 const db = require("../db/queries");
+const { body, validationResult } = require("express-validator");
+
+const validateCategory = [
+  body("name")
+    .trim()
+    .notEmpty()
+    .withMessage("Name is required.")
+    .isString()
+    .withMessage("Name must be a string."),
+];
 
 const showCategories = (req, res) => {
   res.render("categories", {
@@ -32,16 +42,26 @@ const getNewCategoryForm = (req, res) => {
   });
 };
 
-const addCategory = async (req, res, next) => {
-  const { name } = req.body;
-  try {
-    await db.dbAddCategory(name);
-    res.redirect("/");
-  } catch (error) {
-    error.statusCode = 500;
-    next(error);
-  }
-};
+const addCategory = [
+  validateCategory,
+  async (req, res, next) => {
+    const { name } = req.body;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).render("newCategory", {
+        title: "ShopSort: New Category",
+        errors: errors.array(),
+      });
+    }
+    try {
+      await db.dbAddCategory(name);
+      res.redirect("/");
+    } catch (error) {
+      error.statusCode = 500;
+      next(error);
+    }
+  },
+];
 
 const getUpdateCategoryForm = async (req, res, next) => {
   const { id } = req.params;
@@ -62,17 +82,28 @@ const getUpdateCategoryForm = async (req, res, next) => {
   }
 };
 
-const updateCategory = async (req, res) => {
-  const categoryId = req.params.id;
-  const { name } = req.body;
-  try {
-    await db.dbUpdateCategory(categoryId, name);
-    res.redirect("/");
-  } catch (error) {
-    error.statusCode = 500;
-    next(error);
-  }
-};
+const updateCategory = [
+  validateCategory,
+  async (req, res) => {
+    const categoryId = req.params.id;
+    const { name } = req.body;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).render("updateCategory", {
+        title: "ShopSort: Update Category",
+        category: { id: categoryId, name },
+        errors: errors.array(),
+      });
+    }
+    try {
+      await db.dbUpdateCategory(categoryId, name);
+      res.redirect("/");
+    } catch (error) {
+      error.statusCode = 500;
+      next(error);
+    }
+  },
+];
 
 const deleteCategory = async (req, res, next) => {
   const categoryId = req.params.id;
