@@ -136,6 +136,25 @@ const getUpdateItem = async (req, res, next) => {
   }
 };
 
+const toggleCheckedItem = async (req, res, next) => {
+  const itemId = req.params.id;
+  const categoryId = req.query.categoryId;
+  try {
+    const item = await db.dbToggleChecked(itemId);
+    if (!item) {
+      const err = new Error("Item not found");
+      err.statusCode = 404;
+      return next(err);
+    }
+    // Redirect back to category page if categoryId exists
+    const redirectUrl = categoryId ? `/categories/${categoryId}` : "/";
+    res.redirect(redirectUrl);
+  } catch (error) {
+    error.statusCode = 500;
+    next(error);
+  }
+};
+
 module.exports = {
   getNewItemForm,
   addItem,
@@ -143,4 +162,5 @@ module.exports = {
   deleteItem,
   getUpdateItem,
   postUpdateItem,
+  toggleCheckedItem,
 };

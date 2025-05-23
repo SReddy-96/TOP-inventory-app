@@ -25,9 +25,13 @@ const getAllItemsByCategory = async (req, res, next) => {
       err.statusCode = 404;
       return next(err);
     }
+    const checkedItems = items.filter((item) => item.checked);
+    const uncheckedItems = items.filter((item) => !item.checked);
+
     res.render("index", {
-      title: "ShopSort: " + category.name,
-      items,
+      title: "ShopSort" + category.name,
+      checkedItems,
+      uncheckedItems,
       category,
     });
   } catch (error) {

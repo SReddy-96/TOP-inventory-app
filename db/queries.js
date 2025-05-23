@@ -78,6 +78,14 @@ const dbUpdateCategory = async (categoryId, name) => {
   ]);
 };
 
+const dbToggleChecked = async (itemId) => {
+  const { rows } = await pool.query(
+    "UPDATE items SET checked = NOT checked WHERE id = $1 RETURNING *",
+    [itemId]
+  );
+  return rows[0];
+};
+
 module.exports = {
   dbGetAllItems,
   dbGetItem,
@@ -91,4 +99,5 @@ module.exports = {
   dbAddCategory,
   dbDeleteCategory,
   dbGetCategoryById,
+  dbToggleChecked,
 };

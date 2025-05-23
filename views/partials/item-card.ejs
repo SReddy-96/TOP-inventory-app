@@ -1,0 +1,40 @@
+<form
+  action="/item/<%= item.id %>/checked?categoryId=<%= locals.category?.id %>"
+  method="post"
+  class="item-card <%= item.checked ? 'checked' : '' %>"
+>
+  <button type="submit" class="item-content">
+    <div class="item-info">
+      <h3><%= item.name %> x <%= item.quantity %></h3>
+    </div>
+  </button>
+  <div class="item-actions">
+    <a href="/item/<%= item.id %>" class="view-item">
+      <div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="60"
+          height="60"
+          color="#000000"
+          fill="none"
+        >
+          <circle
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="#000000"
+            stroke-width="2"
+          ></circle>
+          <path
+            d="M10.5 8C10.5 8 13.5 10.946 13.5 12C13.5 13.0541 10.5 16 10.5 16"
+            stroke="#000000"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></path>
+        </svg>
+      </div>
+    </a>
+  </div>
+</form>
