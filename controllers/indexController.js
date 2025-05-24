@@ -10,6 +10,8 @@ const getAllItems = async (req, res, next) => {
       title: "ShopSort",
       checkedItems,
       uncheckedItems,
+      activeCategoryId: req.params.id || null,
+      category: null, // for the 'All' category
     });
   } catch (error) {
     error.statusCode = 500;

@@ -33,6 +33,7 @@ const getAllItemsByCategory = async (req, res, next) => {
       checkedItems,
       uncheckedItems,
       category,
+      activeCategoryId: category.id || null,
     });
   } catch (error) {
     error.statusCode = 500;

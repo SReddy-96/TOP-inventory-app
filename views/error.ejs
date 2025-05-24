@@ -1,3 +1,5 @@
+<%- include('partials/header', {title:title}) %>
+
 <main>
   <h1><%= title %></h1>
   <h2>Status: <%= err.statusCode %></h2>
@@ -5,3 +7,4 @@
 
   <a href="/" class="backLink">Back to Home</a>
 </main>
+<%- include('partials/footer') %>
