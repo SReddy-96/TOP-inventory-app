@@ -29,7 +29,7 @@ const getAllItemsByCategory = async (req, res, next) => {
     const uncheckedItems = items.filter((item) => !item.checked);
 
     res.render("index", {
-      title: "ShopSort" + category.name,
+      title: "ShopSort: " + category.name,
       checkedItems,
       uncheckedItems,
       category,

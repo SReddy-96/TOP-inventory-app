@@ -6,6 +6,10 @@ const indexRouter = require("./routes/indexRouter");
 const itemRouter = require("./routes/itemRouter");
 const categoryRouter = require("./routes/categoryRouter");
 const path = require("node:path");
+const favicon = require("serve-favicon");
+
+// Serve Favicon
+app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 
 // static assets
 const assetsPath = path.join(__dirname, "public");
