@@ -7,6 +7,10 @@ async function main(dbUrl) {
   console.log("🌱 Checking database...");
   const client = new Client({
     connectionString: dbUrl,
+    ssl:
+      process.env.NODE_ENV === "production"
+        ? { rejectUnauthorized: false }
+        : false,
   });
 
   try {
