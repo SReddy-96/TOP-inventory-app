@@ -1,10 +1,18 @@
 <%- include('partials/header', {title:title}) %>
 <main>
-  <%- include('partials/formErrors') %>
-  <form action="/categories/new" method="POST">
+  <h2 class="list-title">Add New Category</h2>
+  <div class="form-error-wrapper"><%- include('partials/formErrors') %></div>
+  <form class="add-form" action="/categories/new" method="POST">
     <label for="name">Category Name: </label>
-    <input type="text" id="category_name" name="name" required />
-    <button type="submit">Add category</button>
+    <input
+      type="text"
+      id="category_name"
+      name="name"
+      placeholder="e.g. Fruit"
+      required
+    />
+    <button class="button-primary" type="submit">Add Category</button>
   </form>
+  <a class="back-button" href="/categories">Back</a>
 </main>
 <%- include('partials/footer') %>

@@ -10,8 +10,9 @@ const {
   getUpdateCategoryForm,
   updateCategory,
   deleteCategory,
-  showCategories
+  showCategories,
 } = require("../controllers/categoryController");
+const { checkAdminPassword } = require("../middleware/checkAdminPassword");
 
 categoryRouter.get("/", [getAllCategories, showCategories]);
 
@@ -21,8 +22,8 @@ categoryRouter.post("/new", addCategory);
 categoryRouter.get("/:id", [getAllCategories, getAllItemsByCategory]);
 
 categoryRouter.get("/:id/update", getUpdateCategoryForm);
-categoryRouter.post("/:id/update", updateCategory);
+categoryRouter.post("/:id/update", [checkAdminPassword, updateCategory]);
 
-categoryRouter.post("/:id/delete", deleteCategory);
+categoryRouter.post("/:id/delete", [checkAdminPassword, deleteCategory]);
 
 module.exports = categoryRouter;

@@ -1,15 +1,36 @@
 <%- include('partials/header', {title:title}) %>
 <main>
-  <%- include('partials/formErrors') %>
-  <form action="/Item/new" method="post">
+  <h2 class="list-title">Add New Item</h2>
+  <div class="form-error-wrapper"><%- include('partials/formErrors') %></div>
+
+  <form class="add-form" action="/Item/new" method="post">
     <label for="name">Item Name:</label>
-    <input type="text" id="item_name" name="name" required />
+    <input
+      type="text"
+      id="item_name"
+      name="name"
+      placeholder="e.g. Apple"
+      required
+    />
 
     <label for="quantity">Quantity:</label>
-    <input type="number" id="quantity" name="quantity" required />
+    <input
+      type="number"
+      id="quantity"
+      name="quantity"
+      min="1"
+      placeholder="e.g. 4"
+      required
+    />
 
     <label for="added_by">Added By:</label>
-    <input type="text" id="added_by" name="added_by" required />
+    <input
+      type="text"
+      id="added_by"
+      name="added_by"
+      placeholder="e.g. Steve"
+      required
+    />
 
     <label for="category_id">Category:</label>
     <select name="category_id" id="category_id">
@@ -18,8 +39,8 @@
       <% }) %>
     </select>
 
-    <button type="submit">Add Item</button>
+    <button class="button-primary" type="submit">Add Item</button>
   </form>
-  <a href="/">Back</a>
+  <a class="back-button" href="/">Back</a>
 </main>
 <%- include('partials/footer') %>

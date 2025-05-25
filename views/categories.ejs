@@ -1,26 +1,34 @@
 <%- include('partials/header', {title: title}) %>
 <main>
-  <h2>Categories</h2>
-  <ul>
-    <li><a href="/categories/new">+ Add Category</a></li>
+  <h2 class="list-title">Categories</h2>
+  <a class="new-category-button" href="/categories/new">+ Add Category</a>
+  <ul class="category-list">
     <% categories.forEach(category => { %>
     <li>
-      <%= category.name %>
-      <a class="button-update" href="/categories/<%= category.id %>/update"
+      <b><%= category.name %></b>
+      <a href="/categories/<%= category.id %>/update" class="button-primary"
         >Update</a
       >
-      <form action="/categories/<%= category.id %>/delete" method="POST">
-        <button
-          type="submit"
-          onclick="return confirm('Are you sure you want to delete this category?');"
-          class="button-delete"
-        >
-          Delete
-        </button>
+      <form
+        action="/categories/<%= category.id %>/delete"
+        method="POST"
+        onsubmit="return confirmAction(this);"
+      >
+        <input type="hidden" name="admin_password" />
+        <button type="submit" class="button-delete">Delete</button>
       </form>
     </li>
     <% }) %>
   </ul>
   <a href="/">Back</a>
 </main>
+<script>
+  function confirmAction(form) {
+    const password = prompt("Enter the admin password to confirm this action:");
+    if (!password) return false;
+
+    form.querySelector('[name="admin_password"]').value = password;
+    return true;
+  }
+</script>
 <%- include('partials/footer') %>

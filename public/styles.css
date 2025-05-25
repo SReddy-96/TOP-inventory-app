@@ -15,8 +15,8 @@
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  font-family: "Outfit", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: "Outfit", system-ui, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 img,
@@ -216,13 +216,14 @@ footer {
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
   cursor: pointer;
+  margin: 1rem 0;
 }
 
 .button-delete:hover {
   background-color: rgb(204, 0, 0);
 }
 
-.button-update {
+.button-primary {
   background-color: rgb(0, 153, 255);
   border: none;
   color: white;
@@ -230,11 +231,80 @@ footer {
   border-radius: 0.5rem;
   cursor: pointer;
   text-decoration: none;
+  margin: 1rem 0;
 }
 
-.button-update:hover {
+.button-primary:hover {
   background-color: rgb(0, 114, 190);
 }
+
+/* form */
+
+.add-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background-color: #fff;
+  color: #333;
+}
+
+input::placeholder {
+  color: #aaa;
+}
+
+/* --- */
+
+.error-text {
+  color: red;
+}
+
+/* categories */
+
+.new-category-button {
+  background-color: var(--green-colour);
+  border: none;
+  color: black;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  margin: 1rem 0;
+}
+
+.new-category-button:hover {
+  background-color: var(--hover-green-colour);
+}
+
+.category-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 400px;
+}
+
+.category-list > li {
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.category-list > li > * {
+  margin: 0 1rem;
+}
+
+/* --- */
 
 @media (max-width: 600px) {
   main > section {
@@ -242,5 +312,8 @@ footer {
   }
   header {
     text-align: left;
+  }
+  .category-list {
+    width: 100%;
   }
 }

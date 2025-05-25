@@ -1,7 +1,12 @@
 <%- include('partials/header', {title:title}) %>
 <main>
+  <h2 class="list-title">Update Item</h2>
     <%- include('partials/formErrors') %>
-  <form action="/item/<%= item.id %>/update" method="POST">
+  <form class="add-form" 
+    action="/item/<%= item.id %>/update" 
+    method="POST"  
+    onsubmit="return confirmAction(this);"
+    >
     <label for="name">Item Name:</label>
     <input type="text" id="name" name="name" value="<%= item.name %>" required />
 
@@ -22,9 +27,19 @@
       </option>
       <% }) %>
     </select>
-
-    <button type="submit">Update Item</button>
+        
+    <input type="hidden" name="admin_password" />
+    <button class="button-primary" type="submit">Update Item</button>
   </form>
   <a href="/">Back</a>
 </main>
+<script>
+  function confirmAction(form) {
+    const password = prompt("Enter the admin password to confirm this action:");
+    if (!password) return false;
+
+    form.querySelector('[name="admin_password"]').value = password;
+    return true;
+  }
+</script>
 <%- include('partials/footer') %>

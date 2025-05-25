@@ -1,7 +1,13 @@
 <%- include('partials/header', {title:title}) %>
 <main>
-    <%- include('partials/formErrors') %>
-  <form action="/categories/<%= category.id %>/update" method="POST">
+  <h2 class="list-title">Update Category</h2>
+  <%- include('partials/formErrors') %>
+  <form
+    class="add-form"
+    action="/categories/<%= category.id %>/update"
+    method="POST"
+    onsubmit="return confirmAction(this);"
+  >
     <label for="name">Category Name: </label>
     <input
       type="text"
@@ -10,7 +16,18 @@
       value="<%= category.name %>"
       required
     />
-    <button type="submit">Update category</button>
+    <input type="hidden" name="admin_password" />
+    <button class="button-primary" type="submit">Update category</button>
   </form>
+  <a href="/categories">Back</a>
 </main>
+<script>
+  function confirmAction(form) {
+    const password = prompt("Enter the admin password to confirm this action:");
+    if (!password) return false;
+
+    form.querySelector('[name="admin_password"]').value = password;
+    return true;
+  }
+</script>
 <%- include('partials/footer') %>
