@@ -6,6 +6,7 @@
     "dev": "node --watch app.js",
     "start": "node app.js",
     "populate": "node db/populatedb.js",
+    "build": "npm run populate \"$DATABASE_URL\" && npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
