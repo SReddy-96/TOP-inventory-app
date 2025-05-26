@@ -3,14 +3,13 @@
 require("dotenv").config();
 const { Client } = require("pg");
 
+const isProduction = process.env.NODE_ENV === "production";
+
 async function main(dbUrl) {
   console.log("🌱 Checking database...");
   const client = new Client({
     connectionString: dbUrl,
-    ssl:
-      process.env.NODE_ENV === "production"
-        ? { rejectUnauthorized: false }
-        : false,
+    ssl: isProduction ? { rejectUnauthorized: false } : false,
   });
 
   try {
