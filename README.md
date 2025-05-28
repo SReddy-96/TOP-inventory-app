@@ -2,61 +2,81 @@
 
 ## Summary
 
-A smart shopping list application that helps you organize items by categories, track spending, and never forget essential items.
+A smart shopping list application that helps you organize items by categories. Based on an app I used daily before it was taken down: [HNGRY](https://iamhngry.com/en/).
 
-## Model
+## Preview
 
-## Notes
+| Desktop                                 | Mobile                                |
+| --------------------------------------- | ------------------------------------- |
+| ![Desktop](./public/images/desktop.jpg) | ![Mobile](./public/images/mobile.jpg) |
 
-- Controller
-  - indexController.js
-  - itemController.js
-  - categoryController.js
-- Routes
-  - indexRouter.js
-  - itemRouter.js
-  - categoryRouter.js
-- Views
-  - index.ejs
-  - item.ejs
-  - newItem.ejs
-  - newCategory.ejs
-- db
-  - Pool.js
-  - populatedb.js
-  - itemQueries.js - createItem - getAllItems - getItemById - updateItem - deleteItem - GetAllItemsByCategory
-    categoryQueries.js - createCategory - getAllCategories - getCategoryById - updateCategory - deleteCategory
-- app.js
-  - `/`
-  - `/categories/:id`
-  - `/categories/new`
-  - `/categories/:id/update`
-  - `/categories/:id/delete`
-  - `item/:id`
-  - `/item/new`
-  - `/item/:id/update`
-  - `/item/:id/delete`
+## Project Highlights
 
-user can CRUD items
-user can CRUD categories
-user can get all items of one category
-split all items into category when showing all items
-when delete category, just delete category from item so find items in that category and change the category to "". make sure to have a clause if the category is an empty string.
+- Database integration for CRUD operations on items and categories
+- Proper error handling with custom error middleware
+- Deployment using Koyeb hosting platform
+- Custom favicon implementation using `serve-favicon`
+- Admin authentication middleware for Update and Delete operations
+- Category data middleware for seamless data flow
 
-- item
+## Challenges Overcome
 
-  - id primary key
-  - name
-  - category (foreign key from category table)
-  - date
-  - quantity
-  - added by
+- Successfully deploying to Koyeb with SSL configuration
+- Implementing secure admin password prompts
+- Creating a responsive horizontal scrollable navigation bar for categories
+- Adding custom favicon to the application
+- Developing middleware to handle admin authentication before POST requests
+- Implementing dynamic active classes using EJS conditionals to highlight current category
 
-- category
+## New Skills Acquired
 
-  - id primary key
-  - name
+- Password validation middleware using hidden input fields
+- Proper MVC (Model-View-Controller) architecture setup
+- Koyeb deployment with database URI and SSL configuration
+- Comprehensive error handling with custom error middleware
+- Modular route handling using array syntax for multiple middleware functions
+- Form validation using `express-validator` for input sanitization and validation
 
-  Need to use `express-validator` to sanitise and check the form inputs.
-handle when checked with emojis and strike through the text. 
-Want the All categories to put all the items in groups with headers of the category.
+## Technologies Used
+
+- **Frontend:** HTML, CSS, JavaScript, EJS templating
+- **Backend:** Node.js, Express.js
+- **Database:** PostgreSQL with PG driver
+- **Validation:** express-validator
+- **Utilities:** serve-favicon, dotenv
+- **Deployment:** Koyeb
+
+## Installation & Setup
+
+To clone and run this project locally:
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/SReddy-96/TOP-inventory-app.git
+   ```
+
+2. **Navigate to project directory:**
+
+   ```bash
+   cd TOP-inventory-app
+   ```
+
+3. **Install dependencies:**
+
+    ```bash
+    npm install
+    ```
+
+4. **Set up environment variables:**
+   - Create a `.env` file in the root directory
+   - Add your database connection string and other required variables
+
+5. **Start the server:**
+
+   ```bash
+   node app.js
+   ```
+
+6. **Access the application:**
+   - Open your browser and navigate to `http://localhost:3000` (or the port specified in your .env file)
